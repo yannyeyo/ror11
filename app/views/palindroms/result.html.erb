@@ -1,0 +1,34 @@
+<% if @palindrom.valid? %>
+  <% if @flag == true %>
+  <p><strong class='alert alert-info'>Данные добавлены в базу данных</strong></p>
+    <%else%>
+  <p><strong class='alert alert-info'>Данные уже в базе данных</strong></p>
+  <% end %>
+<h3>Таблица с результатами</h3>
+Введенное диапазон: [0, <%= @number[:num] %>]
+<table class = "tab">
+    <tr>
+    <th>Номер</th>
+    <th>Натурально число</th>
+    <th>Число Мерсена</th>
+    </tr>
+    <% i = 0%>
+    <% @hash.each do |ar,sq|%>
+    <tr>
+        <th><%=i + 1%></th>
+        <td><%= ar %></td>
+        <td><%= sq %></td>
+    </tr>
+    <% i = i + 1%>
+    <% end%>
+</table>
+Количество таких чисел
+<p id="counter"><%= @hash.size %></p>
+<% else %>
+  <ul>
+    <% @palindrom.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
+<% end %>
+<%= link_to "Вернуться назад", home_path %>
